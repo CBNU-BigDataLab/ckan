@@ -24,6 +24,7 @@ import ckan.lib.dictization as d
 import ckan.authz as authz
 import ckan.lib.search as search
 import ckan.lib.munge as munge
+import urllib
 
 ## package save
 
@@ -109,6 +110,8 @@ def resource_dictize(res, context):
     ## in the frontend. Without for_edit the whole qualified url is returned.
     if resource.get('url_type') == 'upload' and not context.get('for_edit'):
         cleaned_name = munge.munge_filename(url)
+        cleaned_name = cleaned_name.encode('utf8')
+	cleaned_name = urllib.unquote(cleaned_name)
         resource['url'] = h.url_for(controller='package',
                                     action='resource_download',
                                     id=resource['package_id'],

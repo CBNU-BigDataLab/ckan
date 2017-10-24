@@ -339,9 +339,9 @@ def name_validator(value, context):
     if len(value) > PACKAGE_NAME_MAX_LENGTH:
         raise Invalid(_('Name must be a maximum of %i characters long') % \
                       PACKAGE_NAME_MAX_LENGTH)
-    if not name_match.match(value):
-        raise Invalid(_('Must be purely lowercase alphanumeric '
-                        '(ascii) characters and these symbols: -_'))
+    #if not name_match.match(value):
+    #    raise Invalid(_('Must be purely lowercase alphanumeric '
+    #                    '(ascii) characters and these symbols: -_'))
     return value
 
 def package_name_validator(key, data, errors, context):
